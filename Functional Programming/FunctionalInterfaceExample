@@ -1,0 +1,38 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+public class FunctionalInterfaceExample {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "Dave", "Eve");
+
+        // Example 1: Using Predicate functional interface
+        Predicate<String> nameStartsWithA = name -> name.startsWith("A");
+        List<String> aNames = filterNames(names, nameStartsWithA);
+        System.out.println("Names starting with 'A': " + aNames);
+
+        // Example 2: Using Function functional interface
+        Function<String, Integer> nameLength = name -> name.length();
+        List<Integer> nameLengths = mapNamesToLength(names, nameLength);
+        System.out.println("Name lengths: " + nameLengths);
+    }
+
+    public static List<String> filterNames(List<String> names, Predicate<String> condition) {
+        List<String> filteredNames = new ArrayList<>();
+        for (String name : names) {
+            if (condition.test(name)) {
+                filteredNames.add(name);
+            }
+        }
+        return filteredNames;
+    }
+
+    public static List<Integer> mapNamesToLength(List<String> names, Function<String, Integer> mapper) {
+        List<Integer> lengths = new ArrayList<>();
+        for (String name : names) {
+            lengths.add(mapper.apply(name));
+        }
+        return lengths;
+    }
+}
