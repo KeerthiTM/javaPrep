@@ -1,0 +1,25 @@
+class Solution {
+    public int reverse(int x) {
+        int n=0;
+        if(x<0){
+            x=x*-1;
+            n=1;
+        }
+        long r=0;
+        while(x>0){
+            r=(r*10)+(x%10);
+            x=x/10;
+        }
+        if(n==1){
+            r*=-1;
+        }
+        if(r >= Integer.MIN_VALUE && r <= Integer.MAX_VALUE)
+            return (int)r; 
+         else
+             return 0;
+        /*if(r <= (-2^31) ||r<=(2^31)-1 ){
+            return r;
+        }
+        return 0;*/
+    }
+}
