@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+public class LambdaExpressionExample {
+    public static void main(String[] args) {
+        List<String> names = new ArrayList<>();
+        names.add("Alice");
+        names.add("Bob");
+        names.add("Charlie");
+        names.add("Dave");
+        names.add("Eve");
+
+        // Example 1: Using lambda expression as a Predicate
+        Predicate<String> nameStartsWithA = name -> name.startsWith("A");
+        List<String> aNames = filterNames(names, nameStartsWithA);
+        System.out.println("Names starting with 'A': " + aNames);
+
+        // Example 2: Using lambda expression as a Consumer
+        Consumer<String> printUpperCase = name -> System.out.println(name.toUpperCase());
+        processNames(names, printUpperCase);
+    }
+
+    public static List<String> filterNames(List<String> names, Predicate<String> condition) {
+        List<String> filteredNames = new ArrayList<>();
+        for (String name : names) {
+            if (condition.test(name)) {
+                filteredNames.add(name);
+            }
+        }
+        return filteredNames;
+    }
+
+    public static void processNames(List<String> names, Consumer<String> action) {
+        for (String name : names) {
+            action.accept(name);
+        }
+    }
+}
